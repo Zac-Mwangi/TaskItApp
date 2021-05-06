@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">taskIT</string>
+
+    <string name="laundry">LAUNDRY</string>
+    <string name="electrician">ELECTRICIAN</string>
+    <string name="plumber">PLUMBER</string>
+    <string name="painting">PAINTING</string>
+    <string name="movers">MOVERS</string>
+    <string name="cobbler">COBBLER</string>
+    <string name="delivery">DELIVERY</string>
+    <string name="mechanics">MECHANICS</string>
+    <string name="location">Location :</string>
+    <string name="location_text">gate E</string>
+    <string name="fullname">Fullname :</string>
+    <string name="fullname_txt">mai</string>
+    <string name="contact">Contact :</string>
+    <string name="contact_txt">072200000</string>
+</resources>
