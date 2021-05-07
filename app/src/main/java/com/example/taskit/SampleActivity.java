@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -36,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class SampleActivity extends AppCompatActivity implements  View.OnClickListener{
+public class SampleActivity extends AppCompatActivity implements  View.OnClickListener, SampleAdapter.OnItemClickListener {
 
     private final String selectURL = savedInfo.theUrl+"select.php";
     List<SampleModel> List;
@@ -94,21 +95,22 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
                         for (int i = 0; i < array.length(); i++) {
 
                             //getting product object from json array
-                            JSONObject product = array.getJSONObject(i);
+                            JSONObject ls = array.getJSONObject(i);
 
                             //adding the product to product list
                             List.add(new SampleModel(
-                                    product.getString("fullname"),
-                                    product.getString("email"),
-                                    product.getString("phone"),
+                                    ls.getString("fullname"),
+                                    ls.getString("email"),
+                                    ls.getString("phone"),
                                 //    product.getString("service_string"),
-                                    product.getString("location_string")
+                                    ls.getString("location_string")
                             ));
                         }
                         //creating adapter object and setting it to recyclerview
-                       // SampleAdapter adapter = new SampleAdapter(SampleActivity.this, List);
-                        recyclerView.setAdapter(new SampleAdapter(SampleActivity.this,List));
-
+                        SampleAdapter adapter = new SampleAdapter(SampleActivity.this, List);
+                        //recyclerView.setAdapter(new SampleAdapter(SampleActivity.this,List));
+                        recyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(SampleActivity.this);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -155,7 +157,17 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
 
     @Override
     public void onClick(View v) {
+    }
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this,Sample2Activity.class);
+        SampleModel clickedItem = List.get(position);
 
+        intent.putExtra("getFullname",clickedItem.getFullname());
+        intent.putExtra("getPhone",clickedItem.getPhone());
+        intent.putExtra("getLocation_string",clickedItem.getLocation_string());
+
+        startActivity(intent);
+       // Toast.makeText(this, "yoh", Toast.LENGTH_SHORT).show();
     }
 }
-

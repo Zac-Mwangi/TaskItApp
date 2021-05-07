@@ -1,6 +1,6 @@
 <?php
 $service=$_POST['service'];
-//$service="laundry";
+//$service="plumber";
 include 'config.php';
 $conn=$dbh->prepare("SELECT * FROM sys_meta WHERE (meta_key='service' AND meta_value = ?)");
 $conn->bindParam(1,$service);

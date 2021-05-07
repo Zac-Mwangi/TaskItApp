@@ -6,6 +6,7 @@
     android:id="@+id/mll"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context=".SampleActivity">
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:layout_width="match_parent"

@@ -18,6 +18,18 @@ import java.util.List;
 public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder> {
     private Context mCtx;
     private List<SampleModel> List;
+
+    //onClickListener
+    private OnItemClickListener mListener;
+    //create interface
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+    //END
+
     //constructor
     public SampleAdapter(Context mCtx, List<SampleModel> List) {
         this.mCtx = mCtx;
@@ -51,6 +63,15 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
             name_volley = itemView.findViewById(R.id.name_volley);
             contact_volley = itemView.findViewById(R.id.contact_volley);
             location_volley = itemView.findViewById(R.id.location_volley);
+
+            itemView.setOnClickListener(v -> {
+                if(mListener != null){
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        mListener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }
