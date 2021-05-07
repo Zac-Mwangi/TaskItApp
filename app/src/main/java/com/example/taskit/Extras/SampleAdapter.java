@@ -22,7 +22,10 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
     public SampleAdapter(Context mCtx, List<SampleModel> List) {
         this.mCtx = mCtx;
         this.List = List;
+
+
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

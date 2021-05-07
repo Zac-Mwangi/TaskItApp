@@ -36,9 +36,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class SampleActivity extends AppCompatActivity {
+public class SampleActivity extends AppCompatActivity implements  View.OnClickListener{
 
-    private final String selectURL = savedInfo.theUrl+"select2.php";
+    private final String selectURL = savedInfo.theUrl+"select.php";
     List<SampleModel> List;
     RecyclerView recyclerView;
     private ProgressDialog pDialog;
@@ -151,6 +151,11 @@ public class SampleActivity extends AppCompatActivity {
             startActivity(getIntent());
             swipeRefreshLayout.setRefreshing(false);
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
 
