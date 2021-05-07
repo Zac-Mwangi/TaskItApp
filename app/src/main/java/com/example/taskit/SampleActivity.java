@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.taskit.Extras.SampleAdapter;
 import com.example.taskit.Extras.SampleModel;
+import com.example.taskit.Extras.savedInfo;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ import java.util.Objects;
 
 public class SampleActivity extends AppCompatActivity {
 
-    private final String selectURL = "select2.php";
+    private final String selectURL = savedInfo.theUrl+"select2.php";
     List<SampleModel> List;
     RecyclerView recyclerView;
     private ProgressDialog pDialog;
@@ -93,15 +94,15 @@ public class SampleActivity extends AppCompatActivity {
                         for (int i = 0; i < array.length(); i++) {
 
                             //getting product object from json array
-                            JSONObject user = array.getJSONObject(i);
+                            JSONObject product = array.getJSONObject(i);
 
                             //adding the product to product list
                             List.add(new SampleModel(
-                                    user.getString("fullname"),
-                                    user.getString("email"),
-                                    user.getString("phone"),
+                                    product.getString("fullname"),
+                                    product.getString("email"),
+                                    product.getString("phone"),
                                 //    product.getString("service_string"),
-                                    user.getString("location_string")
+                                    product.getString("location_string")
                             ));
                         }
                         //creating adapter object and setting it to recyclerview
