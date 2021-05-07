@@ -73,7 +73,7 @@ public class SampleActivity extends AppCompatActivity {
         //creating adapter object and setting it to recyclerview
         //initializing the productlist
         Load();
-     //   swipe();
+        swipe();
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -145,7 +145,7 @@ public class SampleActivity extends AppCompatActivity {
         pDialog.show();
     }
     public void swipe(){
-       // swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             finish();
             startActivity(getIntent());
