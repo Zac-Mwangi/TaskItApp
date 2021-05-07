@@ -37,7 +37,7 @@ import java.util.Objects;
 
 public class SampleActivity extends AppCompatActivity {
 
-    private final String selectURL = "http://192.168.100.4/taskit/php/select2.php";
+    private final String selectURL = "select2.php";
     List<SampleModel> List;
     RecyclerView recyclerView;
     private ProgressDialog pDialog;
@@ -71,7 +71,6 @@ public class SampleActivity extends AppCompatActivity {
 
         List = new ArrayList<>();
         //creating adapter object and setting it to recyclerview
-        //initializing the productlist
         Load();
         swipe();
     }
@@ -94,15 +93,15 @@ public class SampleActivity extends AppCompatActivity {
                         for (int i = 0; i < array.length(); i++) {
 
                             //getting product object from json array
-                            JSONObject product = array.getJSONObject(i);
+                            JSONObject user = array.getJSONObject(i);
 
                             //adding the product to product list
                             List.add(new SampleModel(
-                                    product.getString("fullname"),
-                                    product.getString("email"),
-                                    product.getString("phone"),
+                                    user.getString("fullname"),
+                                    user.getString("email"),
+                                    user.getString("phone"),
                                 //    product.getString("service_string"),
-                                    product.getString("location_string")
+                                    user.getString("location_string")
                             ));
                         }
                         //creating adapter object and setting it to recyclerview
