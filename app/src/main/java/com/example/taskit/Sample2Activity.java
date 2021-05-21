@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -24,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +36,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.taskit.Extras.CommentAdapter;
 import com.example.taskit.Extras.SampleAdapter;
 import com.example.taskit.Extras.SampleModel;
+import com.example.taskit.Extras.SharedPref;
+import com.example.taskit.Extras.commentsModel;
 import com.example.taskit.Extras.savedInfo;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -42,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +57,7 @@ import java.util.Objects;
 public class Sample2Activity extends AppCompatActivity implements View.OnClickListener{
     private final String submit_feedbackURL = savedInfo.theUrl+"feedback.php";
     private final String loadURL = savedInfo.theUrl+"ttl_avr_feedback.php";
+    private final String loadComment = savedInfo.theUrl+"comments.php";
     String getFullname,getPhone,getLocation_string,rating;
     int getUser_id,response_total; float response_average;
     TextView name,ttlTV,aveTV;
@@ -61,6 +69,9 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
     LinearLayout LL;
     private final int MY_PERMISSIONS_REQUEST_CALL = 1;
     private ProgressDialog pDialog;
+
+    List<commentsModel> List;
+    RecyclerView  recyclerView;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -79,6 +90,8 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         LL = findViewById(R.id.mll);
+        recyclerView = findViewById(R.id.sample_recycler);
+
 
         Intent intent = getIntent();
         getFullname = intent.getStringExtra("getFullname");
@@ -94,6 +107,14 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
 
         load();
         swipe();
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(Sample2Activity.this, 1);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        List = new ArrayList<>();
+
+
+       // LoadComments();
 
         msg.setOnClickListener(this);
         call.setOnClickListener(this);
@@ -159,6 +180,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         alertDialog.show();
     }
     private void Submit() {
+        String loggedID = SharedPref.getInstance(this).LoggedInUserID();
         displayLoader();
         StringRequest request = new StringRequest(Request.Method.POST, submit_feedbackURL, response -> {
             //dismiss loader
@@ -192,7 +214,8 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("feedback_by", String.valueOf(0));
+               // params.put("feedback_by", String.valueOf(0));
+                params.put("feedback_by", String.valueOf(loggedID));
                 params.put("rating", rating);
                 params.put("user_id", String.valueOf(getUser_id));
                 params.put("feedback_text", et_feedback.getText().toString().trim());
@@ -238,6 +261,62 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             }
         };
         Volley.newRequestQueue(this).add(request);
+    }
+    public void LoadComments() {
+        displayLoader();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, loadComment,
+                response -> {
+                    pDialog.dismiss();
+                    try {
+                        //converting the string to json array object
+                        JSONArray array = new JSONArray(response);
+
+                        //traversing through all the object
+                        for (int i = 0; i < array.length(); i++) {
+
+                            //getting product object from json array
+                            JSONObject ls = array.getJSONObject(i);
+
+                            //adding the product to product list
+                            List.add(new commentsModel(
+                                    ls.getString("date_posted"),
+                                    ls.getString("feedback_by"),
+                                    ls.getDouble("rate"),
+                                    ls.getString("feedback_text")
+
+                            ));
+                        }
+                        //creating adapter object and setting it to recyclerview
+                        CommentAdapter adapter = new CommentAdapter(Sample2Activity.this, List);
+                        //recyclerView.setAdapter(new SampleAdapter(SampleActivity.this,List));
+                        recyclerView.setAdapter(adapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    v.vibrate(100);
+                    pDialog.dismiss();
+                    Snackbar snackbar = Snackbar
+                            .make(LL, "Check your Internet Connection", Snackbar.LENGTH_INDEFINITE).setActionTextColor(Color.YELLOW).setAction("RETRY", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    startActivity(getIntent());
+                                    finish();
+                                    overridePendingTransition(0, 0);
+                                }
+                            });
+                    snackbar.show();
+                    //Display error message whenever an error occurs
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(getUser_id));
+                return params;
+            }
+        };
+        Volley.newRequestQueue(this).add(stringRequest);
     }
     private void swipe() {
         swipeRefreshLayout = findViewById(R.id.swipe);

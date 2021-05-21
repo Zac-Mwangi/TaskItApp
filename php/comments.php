@@ -9,11 +9,25 @@ include 'config.php';
 		$comments = array(); 
 		while($stmt->fetch()){
 	 		$temp = array();
-				$temp['date_posted'] = $date_posted; 
-				$temp['rate'] = $rate; 
-				$temp['feedback_by'] = $feedback_by;
-				$temp['feedback_text'] = $feedback_text; 
-				array_push($comments, $temp);
-		}	
- echo json_encode($comments);
+	 		if($feedback_text==""){
+
+	 		}else{
+					$conn=$dbh->prepare("SELECT * FROM users WHERE user_id=?");
+					$conn->bindParam(1,$feedback_by);
+					$conn->execute();
+					if($conn->rowCount()!==0){
+						$results=$conn->fetch(PDO::FETCH_OBJ);
+						//we get both the username and user_id and password and salt
+						$username=$results->username;
+						$temp['date_posted'] = $date_posted; 
+						$temp['rate'] = $rate; 
+						$temp['feedback_by'] = $username;
+						$temp['feedback_text'] = $feedback_text; 
+						array_push($comments, $temp);
+		}
+echo json_encode($comments);
+	}
+	 
+}
+
 ?>

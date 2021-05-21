@@ -34,7 +34,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         commentsModel commentsModel = List.get(position);
-        holder.timeTV.setText(""+commentsModel.getDate_posted());
+        holder.Name.setText(commentsModel.getFeedback_by());
+        holder.rateTV.setText(""+(commentsModel.getRate()));
         holder.commentTV.setText(commentsModel.getFeedback_text());
     }
     @Override
@@ -42,10 +43,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         return List.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView timeTV,commentTV;
+        TextView Name,commentTV,rateTV;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            timeTV = itemView.findViewById(R.id.timeTV);
+            Name = itemView.findViewById(R.id.Name);
+            rateTV = itemView.findViewById(R.id.rateTV);
             commentTV = itemView.findViewById(R.id.commentTV);
         }
     }

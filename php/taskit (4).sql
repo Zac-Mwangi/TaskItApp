@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 09:47 AM
+-- Generation Time: May 21, 2021 at 02:03 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -41,19 +41,11 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`feedback_id`, `user_id`, `feedback_by`, `rate`, `feedback_text`, `date_posted`) VALUES
-(1, 2, 0, 1, 'oyaa', '2021-05-21 02:52:57.730683'),
-(2, 2, 0, 1, 'oyaa', '2021-05-21 02:53:07.521815'),
-(3, 2, 0, 2, 'oyaa', '2021-05-21 02:53:18.558178'),
-(4, 2, 0, 5, '', '2021-05-21 03:32:38.619581'),
-(5, 2, 0, 4.5, '', '2021-05-21 03:32:44.383111'),
-(6, 2, 0, 5, '', '2021-05-21 03:32:49.999043'),
-(7, 1, 0, 4.5, '', '2021-05-21 03:33:02.605897'),
-(8, 2, 0, 5, '', '2021-05-21 03:42:02.417924'),
-(9, 2, 0, 2.5, '', '2021-05-21 04:33:20.125175'),
-(10, 2, 0, 4, '', '2021-05-21 04:54:07.546430'),
-(11, 2, 0, 4, 'dtugd', '2021-05-21 05:30:08.597901'),
-(12, 1, 0, 0.5, '', '2021-05-21 05:32:21.403806'),
-(13, 6, 0, 0, '', '2021-05-21 07:45:58.218481');
+(1, 2, 15, 3.5, 'yoh', '2021-05-21 11:15:02.931419'),
+(2, 2, 15, 3.5, 'yoh', '2021-05-21 11:15:05.103496'),
+(3, 6, 15, 4.5, '', '2021-05-21 11:17:00.940650'),
+(4, 1, 15, 4, 'amazing!', '2021-05-21 11:43:43.715030'),
+(5, 3, 15, 3.5, '', '2021-05-21 12:02:00.308469');
 
 -- --------------------------------------------------------
 
@@ -100,25 +92,31 @@ CREATE TABLE `users` (
   `email` varchar(200) NOT NULL,
   `phone` varchar(200) NOT NULL,
   `service` varchar(200) NOT NULL,
-  `location` varchar(200) NOT NULL
+  `location` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `role` int(12) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phone`, `service`, `location`) VALUES
-(1, 'Jacky Itha', 'jacky', 'jacky@gmail.com', '0701314414', '1', '10'),
-(2, 'Arap Cheru', 'Arap', 'g@g.c', '0790780464', '3', '10'),
-(3, 'Zac Mwangi', 'Zac', 'Zacmwangi14@gmail.com', '0730780464', '2', '12'),
-(4, 'Vin Njeru', 'Vinn', 'VNjeru23@gmail.com', '0716631107', '4', '11'),
-(5, 'Lewis Ng\'anga', 'Lewis', 'LewisN@gmail.com', '0714479133', '5', '13'),
-(6, 'Josephat Ndungu', 'Jose', 'Jose123@gmail.com', '0718201905', '8', '9'),
-(7, 'Victoria Nyaguthii', 'Vicky', 'Vtoria@gmail.com', '0711552145', '1', '12'),
-(8, 'Tracy wakuraya', 'Tracy', 'Twakuraya@gmail.com', '07283013988', '2', '10'),
-(9, 'Linet Njaguara', 'Njaguara', 'Njaguara4@gmail.com', '0720243803', '5', '12'),
-(10, 'Eric Maina', 'Eric', 'Emaina@gmail.com', '0720813635', '6', '9'),
-(11, 'Moffat Waweru', 'Moffat', 'MoffatW@gmail.com', '0712361222', '7', '11');
+INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phone`, `service`, `location`, `password`, `role`) VALUES
+(1, 'Jacky Itha', 'jacky', 'jacky@gmail.com', '0701314414', '1', '10', '', 0),
+(2, 'Arap Cheru', 'Arap', 'g@g.c', '0790780464', '3', '10', '', 0),
+(3, 'Zac Mwangi', 'Zac', 'Zacmwangi14@gmail.com', '0730780464', '2', '12', '', 0),
+(4, 'Vin Njeru', 'Vinn', 'VNjeru23@gmail.com', '0716631107', '4', '11', '', 0),
+(5, 'Lewis Ng\'anga', 'Lewis', 'LewisN@gmail.com', '0714479133', '5', '13', '', 0),
+(6, 'Josephat Ndungu', 'Jose', 'Jose123@gmail.com', '0718201905', '8', '9', '', 0),
+(7, 'Victoria Nyaguthii', 'Vicky', 'Vtoria@gmail.com', '0711552145', '1', '12', '', 0),
+(8, 'Tracy wakuraya', 'Tracy', 'Twakuraya@gmail.com', '07283013988', '2', '10', '', 0),
+(9, 'Linet Njaguara', 'Njaguara', 'Njaguara4@gmail.com', '0720243803', '5', '12', '', 0),
+(10, 'Eric Maina', 'Eric', 'Emaina@gmail.com', '0720813635', '6', '9', '', 0),
+(11, 'Moffat Waweru', 'Moffat', 'MoffatW@gmail.com', '0712361222', '7', '11', '', 0),
+(12, 'yoh', 'yoh', '', '0785012545', '', '', 'a113bd39fd0b16165b6dcb5cf7799a15', 0),
+(13, 'yoh', 'yoh', '', '0785012545', '', '', 'a113bd39fd0b16165b6dcb5cf7799a15', 0),
+(14, 'jakuom', 'jakuom', '', '+254708928903', '', '', '3b812175a3bbca97b079857d20ee12f1', 0),
+(15, 'kaki', 'kaki', '', '0701314414', '', '', 'db788e8cbac6da8538ff37261c9ed197', 0);
 
 --
 -- Indexes for dumped tables
@@ -150,7 +148,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `feedback_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sys_meta`
@@ -162,7 +160,7 @@ ALTER TABLE `sys_meta`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

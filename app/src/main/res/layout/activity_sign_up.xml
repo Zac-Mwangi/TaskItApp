@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0E2130"
     android:orientation="vertical"
+    android:id="@+id/mll"
     tools:context=".SignUpActivity">
 
     <RelativeLayout
@@ -79,7 +84,7 @@
             android:drawableLeft="@drawable/ic_location"
             android:drawablePadding="12dp"
             android:hint="@string/Location"
-            android:inputType="phone"
+            android:inputType="text"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:gravity="start"
@@ -123,7 +128,7 @@
             android:textColorHint="@color/black"
             android:orientation="horizontal"
             tools:visibility="visible">
-            <RadioButton android:id="@+id/radio_pirates"
+            <RadioButton android:id="@+id/radio_male"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -131,7 +136,7 @@
                 android:inputType="text"
                 android:text="@string/genderM"
                 tools:visibility="visible"/>
-            <RadioButton android:id="@+id/radio_ninjas"
+            <RadioButton android:id="@+id/radio_female"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -156,6 +161,7 @@
             android:text="@string/sign_up"/>
     </LinearLayout>
     <TextView
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -166,3 +172,4 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"/>
 </LinearLayout>
+</ScrollView>

@@ -139,6 +139,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:outlineSpotShadowColor="@color/black"
+            android:progressTint="#FFC107"
+            android:progressBackgroundTint="#0E2130"
             android:id="@+id/ratingBar"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -183,7 +185,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler"/>
+            android:id="@+id/sample_recycler"/>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

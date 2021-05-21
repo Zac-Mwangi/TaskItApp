@@ -3,9 +3,9 @@ package com.example.taskit.Extras;
 public class commentsModel {
     String date_posted,feedback_text;
     double rate;
-    int feedback_by;
+    String feedback_by;
 
-    public commentsModel(String date_posted, String feedback_text, double rate, int feedback_by) {
+    public commentsModel(String date_posted, String feedback_text, double rate, String feedback_by) {
         this.date_posted = date_posted;
         this.feedback_text = feedback_text;
         this.rate = rate;
@@ -24,7 +24,7 @@ public class commentsModel {
         return rate;
     }
 
-    public int getFeedback_by() {
+    public String getFeedback_by() {
         return feedback_by;
     }
 }

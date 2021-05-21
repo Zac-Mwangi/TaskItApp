@@ -8,14 +8,17 @@
     tools:context=".MainActivity">
     <TextView
         android:layout_width="fill_parent"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:text="Hello User,
-        What task would you like help with today?"
-        android:lines="2"/>
+        android:padding="10dp"
+        android:id="@+id/kaki"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"/>
+
 
 </LinearLayout>
