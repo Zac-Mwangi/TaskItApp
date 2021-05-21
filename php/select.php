@@ -9,15 +9,16 @@ $conn->execute();
 		$results=$conn->fetch(PDO::FETCH_OBJ);
 		$meta_id=$results->meta_id;
 		//echo($meta_id);
-			$stmt = $con->prepare("SELECT fullname, email, phone,location FROM users WHERE service = '$meta_id' ORDER BY location");
+			$stmt = $con->prepare("SELECT fullname, email, phone,location,user_id FROM users WHERE service = '$meta_id' ORDER BY location");
 			$stmt->execute();
-			$stmt->bind_result($fullname, $email, $phone,$location);
+			$stmt->bind_result($fullname, $email, $phone,$location,$user_id);
 	 		$users = array(); 
 	 		while($stmt->fetch()){
 			 		$temp = array();
 	 				$temp['fullname'] = $fullname; 
 	 				$temp['email'] = $email; 
-	 				$temp['phone'] = $phone; 
+	 				$temp['phone'] = $phone;
+	 				$temp['user_id'] = $user_id; 
 	 				//$temp['location']=$location;
 	 				//finding location
 	 					$conn=$dbh->prepare("SELECT * FROM sys_meta WHERE (meta_key='location' AND meta_id = ?)");
@@ -30,8 +31,8 @@ $conn->execute();
 						}else{
 							$temp['location_string'] = "Yoh bro rada hello my friend :-)"; 
 						}
-		}
-		array_push($users, $temp);
+						array_push($users, $temp);
+		}	
 	}
  echo json_encode($users);
 ?>

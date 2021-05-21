@@ -103,7 +103,8 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
                                     ls.getString("email"),
                                     ls.getString("phone"),
                                 //    product.getString("service_string"),
-                                    ls.getString("location_string")
+                                    ls.getString("location_string"),
+                                    ls.getInt("user_id")
                             ));
                         }
                         //creating adapter object and setting it to recyclerview
@@ -166,6 +167,7 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
         intent.putExtra("getFullname",clickedItem.getFullname());
         intent.putExtra("getPhone",clickedItem.getPhone());
         intent.putExtra("getLocation_string",clickedItem.getLocation_string());
+        intent.putExtra("getUser_id",clickedItem.getUser_id());
 
         startActivity(intent);
        // Toast.makeText(this, "yoh", Toast.LENGTH_SHORT).show();
