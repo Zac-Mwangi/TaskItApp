@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TaskIT"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".AobActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MsgActivity" />
         <activity android:name=".Sample2Activity" />
         <activity android:name=".SampleActivity" />

@@ -11,8 +11,50 @@
     <string name="mechanics">MECHANICS</string>
     <string name="location">Location :</string>
     <string name="location_text">gate E</string>
-    <string name="fullname">Fullname :</string>
-    <string name="fullname_txt">mai</string>
+    <string name="full_name">Full name :</string>
     <string name="contact">Contact :</string>
     <string name="contact_txt">072200000</string>
+
+
+    <string name="button_text_login">Login</string>
+
+    <string name="button_text">Sign Up</string>
+
+    <string name="sign_up">Sign Up</string>
+
+    <string name="button_sign_up">New User? Sign Up</string>
+
+    <string name="button_sign_in">Already Have an Account? Login </string>
+
+    <string name="text_logo">TaskItApp</string>
+
+    <string name="text_username">Name</string>
+
+    <string name="text_password">Password</string>
+
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="text_forgot">Forgot Password?</string>
+
+    <string name="genderM">Male</string>
+
+    <string name="GenderF">Female</string>
+
+    <string name="text_worker">Text worker</string>
+
+    <string name="call_worker">Call worker</string>
+
+    <string name="comment">Leave Comment</string>
+
+    <string name="Cash">Cash</string>
+
+    <string name="Mpesa">Mpesa</string>
+
+    <string name="Phone">Phone Number</string>
+
+    <string name="Location">Location</string>
+
+    <string name="Create">Create Account</string>
+
+    <string name="Submit">Submit Feedback</string>
 </resources>

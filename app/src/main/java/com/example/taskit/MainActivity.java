@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
             imageDescriptionList.add(getResources().getString(R.string.cobbler));
             imageDescriptionList.add(getResources().getString(R.string.delivery));
             imageDescriptionList.add(getResources().getString(R.string.mechanics));
-
         //after list are ready we send it to the adapter
-
         recyclerHome.setAdapter(new HomeAdapter(imageList,imageDescriptionList));
     }
 }
