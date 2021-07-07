@@ -60,7 +60,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
     private final String loadComment = savedInfo.theUrl+"comments.php";
     String getFullname,getPhone,getLocation_string,rating;
     int getUser_id,response_total; float response_average;
-    TextView name,ttlTV,aveTV;
+    TextView name,ttlTV,aveTV,comments;
     Button msg, call,BTN_feedback;
     EditText et_feedback;
     RatingBar ratingbar;
@@ -87,6 +87,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         et_feedback = findViewById(R.id.et_feedback);
         ttlTV = findViewById(R.id.ttl_feedback_value);
         aveTV = findViewById(R.id.avr_rating_value);
+        comments = findViewById(R.id.comments);
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         LL = findViewById(R.id.mll);
@@ -113,12 +114,10 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
 
         List = new ArrayList<>();
 
-
-       // LoadComments();
-
         msg.setOnClickListener(this);
         call.setOnClickListener(this);
         BTN_feedback.setOnClickListener(this);
+        comments.setOnClickListener(this);
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -133,6 +132,10 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             Intent intent = new Intent(this,MsgActivity.class);
             intent.putExtra("getPhone",getPhone);
             startActivity(intent);
+        }if(v==comments){
+            //Toast.makeText(this, "Comments", Toast.LENGTH_SHORT).show();
+            LoadComments();
+            comments.setEnabled(false);
         }
         if(v==call) {
             if (ContextCompat.checkSelfPermission(Sample2Activity.this, Manifest.permission.CALL_PHONE)
@@ -162,7 +165,14 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
     }
     private void displayLoader2() {
         pDialog = new ProgressDialog(Sample2Activity.this, R.style.MyAlertDialogStyle);
-        pDialog.setMessage("Loading details...");
+        pDialog.setMessage("Loading Rates...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+    private void displayLoader3() {
+        pDialog = new ProgressDialog(Sample2Activity.this, R.style.MyAlertDialogStyle);
+        pDialog.setMessage("Loading Comments...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -226,6 +236,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
     }
     private void load() {
         displayLoader2();
+      //  LoadComments();
         StringRequest request = new StringRequest(Request.Method.POST, loadURL, response -> {
             //dismiss loader
             pDialog.dismiss();
@@ -261,9 +272,10 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             }
         };
         Volley.newRequestQueue(this).add(request);
+       // LoadComments();
     }
     public void LoadComments() {
-        displayLoader();
+        displayLoader3();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, loadComment,
                 response -> {
                     pDialog.dismiss();
@@ -280,9 +292,9 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
                             //adding the product to product list
                             List.add(new commentsModel(
                                     ls.getString("date_posted"),
-                                    ls.getString("feedback_by"),
+                                    ls.getString("feedback_text"),
                                     ls.getDouble("rate"),
-                                    ls.getString("feedback_text")
+                                    ls.getString("feedback_by")
 
                             ));
                         }
