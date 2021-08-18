@@ -51,58 +51,55 @@ public class HomeAdapter extends RecyclerView.Adapter<com.example.taskit.Extras.
         holder.image.setImageResource(imageList.get(position));
         holder.imageDescr.setText(imageDescriptionList.get(position));
 
-        holder.hCV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String page = imageDescriptionList.get(position);
-                if(page.equals(mContext.getResources().getString(R.string.laundry))){
-                    //Toast.makeText(mContext, "laundry", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.laundry).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.electrician))){
-                    //Toast.makeText(mContext, "electrician", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.electrician).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.plumber))){
-                    // Toast.makeText(mContext, "plumber", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.plumber).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.painting))){
-                    //Toast.makeText(mContext, "painting", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.painting).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.movers))){
-                    // Toast.makeText(mContext, "movers", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.movers).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.cobbler))){
-                    // Toast.makeText(mContext, "cobbler", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.cobbler).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.delivery))){
-                    //Toast.makeText(mContext, "delivery", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.delivery).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
-                if(page.equals(mContext.getResources().getString(R.string.mechanics))){
-                    // Toast.makeText(mContext, "mechanics", Toast.LENGTH_SHORT).show();
-                    Intent sample = new Intent(mContext, SampleActivity.class);
-                    sample.putExtra("service",mContext.getResources().getString(R.string.mechanics).toLowerCase() );
-                    mContext.startActivity(sample);
-                }
+        holder.hCV.setOnClickListener(v -> {
+            String page = imageDescriptionList.get(position);
+            if(page.equals(mContext.getResources().getString(R.string.laundry))){
+                //Toast.makeText(mContext, "laundry", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.laundry).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.electrician))){
+                //Toast.makeText(mContext, "electrician", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.electrician).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.plumber))){
+                // Toast.makeText(mContext, "plumber", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.plumber).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.painting))){
+                //Toast.makeText(mContext, "painting", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.painting).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.movers))){
+                // Toast.makeText(mContext, "movers", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.movers).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.cobbler))){
+                // Toast.makeText(mContext, "cobbler", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.cobbler).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.delivery))){
+                //Toast.makeText(mContext, "delivery", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.delivery).toLowerCase() );
+                mContext.startActivity(sample);
+            }
+            if(page.equals(mContext.getResources().getString(R.string.mechanics))){
+                // Toast.makeText(mContext, "mechanics", Toast.LENGTH_SHORT).show();
+                Intent sample = new Intent(mContext, SampleActivity.class);
+                sample.putExtra("service",mContext.getResources().getString(R.string.mechanics).toLowerCase() );
+                mContext.startActivity(sample);
             }
         });
         //finally run
