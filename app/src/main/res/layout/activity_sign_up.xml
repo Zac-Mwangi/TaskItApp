@@ -119,7 +119,8 @@
             android:inputType="text"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:gravity="start"/>
+            android:gravity="start">
+        </EditText>
 
         <RadioGroup
             android:layout_width="fill_parent"

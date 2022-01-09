@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Vibrator v;
     ProgressDialog pDialog;
 
+
     private final String login_url = savedInfo.theUrl+"login.php";
 
 
@@ -107,35 +108,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //display loader
         displayLoader();
         // showSimpleProgressDialog(this, "Loading...","Please be patient",false);
+//datatype
+        StringRequest request = new StringRequest(Request.Method.POST, login_url, response -> {
+            //dismiss loader
+            pDialog.dismiss();
 
-        StringRequest request = new StringRequest(Request.Method.POST, login_url,new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //dismiss loader
-                pDialog.dismiss();
-
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if (obj.getBoolean("error")) {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                    } else {
-                        //get username from json and userID
-                        String Username = obj.getString("username");
-                        String userID = obj.getString("userID");
+            try {
+                JSONObject obj = new JSONObject(response);
+                if (obj.getBoolean("error")) {
+                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                } else {
+                    //get username from json and userID
+                    String Username = obj.getString("username");
+                    String userID = obj.getString("userID");
 
 
-                        //storing the user and ID in shared preferences
-                        SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
-                        SharedPref.getInstance(getApplicationContext()).storeUserID(userID);
+                    //storing the user and ID in shared preferences
 
-                        //starting the Dashboard activity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    //used for sessions
 
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
+                    SharedPref.getInstance(getApplicationContext()).storeUserID(userID);
+
+                    //starting the Dashboard activity
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }, error -> {
             pDialog.dismiss();

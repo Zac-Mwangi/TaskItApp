@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,13 +19,13 @@
         android:theme="@style/Theme.TaskIT"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".AobActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MsgActivity" />
         <activity android:name=".Sample2Activity" />
         <activity android:name=".SampleActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

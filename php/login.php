@@ -1,14 +1,14 @@
 <?php
 $username = $_POST['username'];
 $password = $_POST['password'];
-/*
-$username = "kaki";
-$password = "kaki4";*/
+
+// $username = "lenox";
+// $password = "123";
+
 $output = array();
 //requires database connection
 
 include 'config.php';
-include 'functions.php';
 $password = md5($password);
 $conn=$dbh->prepare("SELECT * FROM users WHERE username=? AND password = ?");
 $conn->bindParam(1,$username);

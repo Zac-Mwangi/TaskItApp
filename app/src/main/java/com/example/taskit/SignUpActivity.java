@@ -151,27 +151,24 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
 //display loader
         displayLoader();
 
-        StringRequest request = new StringRequest(Request.Method.POST, add_userURL,new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //dismiss loader
-                pDialog.dismiss();
+        StringRequest request = new StringRequest(Request.Method.POST, add_userURL, response -> {
+            //dismiss loader
+            pDialog.dismiss();
 
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if (obj.getBoolean("error")) {
-                        //resetElements();
-                        loginUsername.setText("");
-                        v.vibrate(100);
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                    }else {
-                        resetElements();
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            try {
+                JSONObject obj = new JSONObject(response);
+                if (obj.getBoolean("error")) {
+                    //resetElements();
+                    loginUsername.setText("");
+                    v.vibrate(100);
+                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                }else {
+                    resetElements();
+                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                 }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }, new Response.ErrorListener() {
             @Override
