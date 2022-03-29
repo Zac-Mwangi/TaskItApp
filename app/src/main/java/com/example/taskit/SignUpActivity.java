@@ -34,15 +34,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUpActivity extends AppCompatActivity  implements View.OnClickListener{
-EditText loginUsername,loginPhoneNumber, loginLocation, loginPassword, loginPassword2;
-RadioButton radio_male , radio_female;
-Button SignUp;
-Vibrator v;
-LinearLayout LL;
-ProgressDialog pDialog;
-TextView Login;
-private final String add_userURL = savedInfo.theUrl+"addUser.php";
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText loginUsername, loginPhoneNumber, loginLocation, loginPassword, loginPassword2;
+    RadioButton radio_male, radio_female;
+    Button SignUp;
+    Vibrator v;
+    LinearLayout LL;
+    ProgressDialog pDialog;
+    TextView Login;
+    private final String add_userURL = savedInfo.theUrl + "addUser.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,18 +70,19 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
 
     @Override
     public void onClick(View v) {
-        if ( v== SignUp){
-           // Toast.makeText(this, "You're Signing Up", Toast.LENGTH_SHORT).show();
+        if (v == SignUp) {
+            // Toast.makeText(this, "You're Signing Up", Toast.LENGTH_SHORT).show();
             validateInput();
         }
-        if (v== Login){
+        if (v == Login) {
             //Toast.makeText(this, "You're  Up", Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(SignUpActivity.this,LoginActivity.class);
+            Intent i = new Intent(SignUpActivity.this, LoginActivity.class);
             startActivity(i);
 
         }
 
     }
+
     public void validateInput() {
         //getting values
 
@@ -106,7 +107,7 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
             SignUp.setEnabled(true);
             return;
         }
-        if(phoneFinal.length() < 10){
+        if (phoneFinal.length() < 10) {
             loginPhoneNumber.setError("Phone Number must have 10 characters");
             loginPhoneNumber.requestFocus();
             v.vibrate(100);
@@ -162,7 +163,7 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
                     loginUsername.setText("");
                     v.vibrate(100);
                     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     resetElements();
                     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                 }
@@ -187,7 +188,7 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
                 snackbar.show();
                 //Display error message whenever an error occurs
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -200,6 +201,7 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
         };
         Volley.newRequestQueue(this).add(request);
     }
+
     private void resetElements() {
         loginUsername.setText("");
         loginPassword.setText("");
@@ -210,7 +212,7 @@ private final String add_userURL = savedInfo.theUrl+"addUser.php";
     }
 
     private void displayLoader() {
-        pDialog = new ProgressDialog(SignUpActivity.this,R.style.MyAlertDialogStyle);
+        pDialog = new ProgressDialog(SignUpActivity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Adding User please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);

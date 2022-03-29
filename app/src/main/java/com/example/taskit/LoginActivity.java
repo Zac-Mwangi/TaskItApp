@@ -33,7 +33,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView sign_up, forgot_pass;
     EditText loginUsername, loginPassword;
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressDialog pDialog;
 
 
-    private final String login_url = savedInfo.theUrl+"login.php";
+    private final String login_url = savedInfo.theUrl + "login.php";
 
 
     @Override
@@ -51,8 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        sign_up=findViewById(R.id.create_acc);
-        forgot_pass=findViewById(R.id.forgot_pass);
+        sign_up = findViewById(R.id.create_acc);
+        forgot_pass = findViewById(R.id.forgot_pass);
 
         loginUsername = findViewById(R.id.loginUsername);
         loginPassword = findViewById(R.id.loginPassword);
@@ -72,15 +72,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v==sign_up){
+        if (v == sign_up) {
             //Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         }
-        if(v==BtnLogin){
+        if (v == BtnLogin) {
             validateInput();
         }
     }
+
     public void validateInput() {
         //getting values
         final String userNameFinal = loginUsername.getText().toString().trim();
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //Login If everything is fine
         Login();
     }
+
     private void Login() {
 //display loader
         displayLoader();
@@ -149,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     });
             snackbar.show();
             //Display error message whenever an error occurs
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -161,8 +163,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         };
         Volley.newRequestQueue(this).add(request);
     }
+
     private void displayLoader() {
-        pDialog = new ProgressDialog(LoginActivity.this,R.style.MyAlertDialogStyle);
+        pDialog = new ProgressDialog(LoginActivity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Logging in please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);

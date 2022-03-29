@@ -21,11 +21,13 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
 
     //onClickListener
     private OnItemClickListener mListener;
+
     //create interface
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
-    public void setOnItemClickListener(OnItemClickListener listener){
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
     //END
@@ -45,6 +47,7 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
         View view = inflater.inflate(R.layout.list, null);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SampleModel sampleModel = List.get(position);
@@ -52,12 +55,15 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
         holder.contact_volley.setText(sampleModel.getPhone());
         holder.location_volley.setText(sampleModel.getLocation_string());
     }
+
     @Override
     public int getItemCount() {
         return List.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name_volley,contact_volley,location_volley;
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView name_volley, contact_volley, location_volley;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_volley = itemView.findViewById(R.id.name_volley);
@@ -65,9 +71,9 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
             location_volley = itemView.findViewById(R.id.location_volley);
 
             itemView.setOnClickListener(v -> {
-                if(mListener != null){
+                if (mListener != null) {
                     int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION){
+                    if (position != RecyclerView.NO_POSITION) {
                         mListener.onItemClick(position);
                     }
                 }

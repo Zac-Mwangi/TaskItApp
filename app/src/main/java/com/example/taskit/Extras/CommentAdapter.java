@@ -18,6 +18,7 @@ import java.util.List;
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
     private Context mCtx;
     private List<commentsModel> List;
+
     //constructor
     public CommentAdapter(Context mCtx, List<commentsModel> List) {
         this.mCtx = mCtx;
@@ -31,19 +32,23 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         View view = inflater.inflate(R.layout.comment_list, null);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         commentsModel commentsModel = List.get(position);
         holder.Name.setText(commentsModel.getFeedback_by());
-        holder.rateTV.setText(""+(commentsModel.getRate()));
+        holder.rateTV.setText("" + (commentsModel.getRate()));
         holder.commentTV.setText(commentsModel.getFeedback_text());
     }
+
     @Override
     public int getItemCount() {
         return List.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView Name,commentTV,rateTV;
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView Name, commentTV, rateTV;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Name = itemView.findViewById(R.id.Name);

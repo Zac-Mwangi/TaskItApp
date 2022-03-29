@@ -1,7 +1,7 @@
 package com.example.taskit.Extras;
 
 public class commentsModel {
-    String date_posted,feedback_text;
+    String date_posted, feedback_text;
     double rate;
     String feedback_by;
 

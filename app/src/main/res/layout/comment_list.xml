@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/homeCardV"
-    android:layout_marginTop="20dp"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,34 +17,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp">
+
             <LinearLayout
+                android:id="@+id/LL1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/LL1"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
                     android:id="@+id/product_name"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:text="Feedback By : "
-                    />
-                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="@string/full_name"
+                    android:layout_weight="1"
+                    android:text="Feedback By : "
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/Name"
-                    />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/full_name" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/LL2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/LL1"
-                android:id="@+id/LL2"
                 android:orientation="horizontal">
 
                 <TextView
@@ -56,34 +58,37 @@
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
                 <TextView
+                    android:id="@+id/rateTV"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="3.5"
-                    android:id="@+id/rateTV" />
+                    android:layout_weight="1"
+                    android:text="3.5" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/LL2"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:id="@+id/email"
-                    android:text="Comment"
-                    android:textSize="18sp"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    />
-                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Great"
-                    android:id="@+id/commentTV" />
+                    android:layout_weight="1"
+                    android:text="Comment"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/commentTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Great" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

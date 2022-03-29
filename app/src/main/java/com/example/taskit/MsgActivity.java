@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class MsgActivity extends AppCompatActivity implements View.OnClickListener{
+public class MsgActivity extends AppCompatActivity implements View.OnClickListener {
     String getPhone;
     EditText etMessage;
     Button btnSendSMS;
@@ -55,44 +55,45 @@ public class MsgActivity extends AppCompatActivity implements View.OnClickListen
 
         btnSendSMS.setOnClickListener(this);
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
     @Override
     public void onClick(View v) {
-        if(v==btnSendSMS){
+        if (v == btnSendSMS) {
             String intro = "<TaskIt App>\n";
-            String message = intro+etMessage.getText().toString();
-           // String telNr = "0790780464";
+            String message = intro + etMessage.getText().toString();
+            // String telNr = "0790780464";
             if (ContextCompat.checkSelfPermission(MsgActivity.this, Manifest.permission.SEND_SMS)
-                    != PackageManager.PERMISSION_GRANTED)
-            {
-                ActivityCompat.requestPermissions(MsgActivity.this, new String [] {Manifest.permission.SEND_SMS},
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MsgActivity.this, new String[]{Manifest.permission.SEND_SMS},
                         MY_PERMISSIONS_REQUEST_SEND_SMS);
-            }
-            else
-            {
+            } else {
                 SmsManager sms = SmsManager.getDefault();
                 sms.sendTextMessage(getPhone, null, message, sentPI, deliveredPI);
             }
         }
-    } @Override
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
 
         unregisterReceiver(smsSentReceiver);
         unregisterReceiver(smsDeliveredReceiver);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         smsSentReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                switch (getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         etMessage.setText("");
                         Toast.makeText(context, "SMS sent successfully!", Toast.LENGTH_SHORT).show();
@@ -115,8 +116,7 @@ public class MsgActivity extends AppCompatActivity implements View.OnClickListen
         smsDeliveredReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                switch(getResultCode())
-                {
+                switch (getResultCode()) {
                     case Activity.RESULT_OK:
                         Toast.makeText(context, "SMS delivered!", Toast.LENGTH_SHORT).show();
                         break;

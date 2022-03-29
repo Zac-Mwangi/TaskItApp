@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <TextView
-        android:layout_width="fill_parent"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
         android:id="@+id/kaki"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
         android:textColor="@color/black"
-        android:gravity="center_horizontal"/>
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/row_home"
-        android:id="@+id/recyclerView"/>
+        tools:listitem="@layout/row_home" />
 
 </LinearLayout>

@@ -54,14 +54,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class Sample2Activity extends AppCompatActivity implements View.OnClickListener{
-    private final String submit_feedbackURL = savedInfo.theUrl+"feedback.php";
-    private final String loadURL = savedInfo.theUrl+"ttl_avr_feedback.php";
-    private final String loadComment = savedInfo.theUrl+"comments.php";
-    String getFullname,getPhone,getLocation_string,rating;
-    int getUser_id,response_total; float response_average;
-    TextView name,ttlTV,aveTV,comments;
-    Button msg, call,BTN_feedback;
+public class Sample2Activity extends AppCompatActivity implements View.OnClickListener {
+    private final String submit_feedbackURL = savedInfo.theUrl + "feedback.php";
+    private final String loadURL = savedInfo.theUrl + "ttl_avr_feedback.php";
+    private final String loadComment = savedInfo.theUrl + "comments.php";
+    String getFullname, getPhone, getLocation_string, rating;
+    int getUser_id, response_total;
+    float response_average;
+    TextView name, ttlTV, aveTV, comments;
+    Button msg, call, BTN_feedback;
     EditText et_feedback;
     RatingBar ratingbar;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -71,7 +72,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
     private ProgressDialog pDialog;
 
     List<commentsModel> List;
-    RecyclerView  recyclerView;
+    RecyclerView recyclerView;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -98,12 +99,12 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         getFullname = intent.getStringExtra("getFullname");
         getPhone = intent.getStringExtra("getPhone");
         getLocation_string = intent.getStringExtra("getLocation_string");
-        getUser_id = intent.getIntExtra("getUser_id",0);
+        getUser_id = intent.getIntExtra("getUser_id", 0);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle(getFullname+" ("+getLocation_string+")");
+        actionBar.setTitle(getFullname + " (" + getLocation_string + ")");
         name.setText(getFullname);
 
         load();
@@ -119,6 +120,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         BTN_feedback.setOnClickListener(this);
         comments.setOnClickListener(this);
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -127,17 +129,18 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if(v==msg){
+        if (v == msg) {
             //Toast.makeText(this, "msg2", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this,MsgActivity.class);
-            intent.putExtra("getPhone",getPhone);
+            Intent intent = new Intent(this, MsgActivity.class);
+            intent.putExtra("getPhone", getPhone);
             startActivity(intent);
-        }if(v==comments){
+        }
+        if (v == comments) {
             //Toast.makeText(this, "Comments", Toast.LENGTH_SHORT).show();
             LoadComments();
             comments.setEnabled(false);
         }
-        if(v==call) {
+        if (v == call) {
             if (ContextCompat.checkSelfPermission(Sample2Activity.this, Manifest.permission.CALL_PHONE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(Sample2Activity.this, new String[]{Manifest.permission.CALL_PHONE},
@@ -145,17 +148,18 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             } else {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 //callIntent.setData(Uri.parse("tel:0790780464"));
-                callIntent.setData(Uri.parse("tel:"+getPhone));
+                callIntent.setData(Uri.parse("tel:" + getPhone));
                 startActivity(callIntent);
             }
         }
-        if(v==BTN_feedback){
-           // Toast.makeText(this, "Feedback", Toast.LENGTH_SHORT).show();
-           // String rating=String.valueOf(ratingbar.getRating());
-           // Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
+        if (v == BTN_feedback) {
+            // Toast.makeText(this, "Feedback", Toast.LENGTH_SHORT).show();
+            // String rating=String.valueOf(ratingbar.getRating());
+            // Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
             AlertDialog();
         }
     }
+
     private void displayLoader() {
         pDialog = new ProgressDialog(Sample2Activity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Data Submission in Progress...");
@@ -163,6 +167,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
     private void displayLoader2() {
         pDialog = new ProgressDialog(Sample2Activity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Loading Rates...");
@@ -170,6 +175,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
     private void displayLoader3() {
         pDialog = new ProgressDialog(Sample2Activity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Loading Comments...");
@@ -177,10 +183,11 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
     private void AlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        rating=String.valueOf(ratingbar.getRating());
-        alertDialogBuilder.setMessage("Are you sure you want to Rate "+getFullname+ " a "+rating+" rating");
+        rating = String.valueOf(ratingbar.getRating());
+        alertDialogBuilder.setMessage("Are you sure you want to Rate " + getFullname + " a " + rating + " rating");
         alertDialogBuilder.setPositiveButton("YES",
                 (arg0, arg1) -> Submit());
 
@@ -189,6 +196,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
     private void Submit() {
         String loggedID = SharedPref.getInstance(this).LoggedInUserID();
         displayLoader();
@@ -224,7 +232,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-               // params.put("feedback_by", String.valueOf(0));
+                // params.put("feedback_by", String.valueOf(0));
                 params.put("feedback_by", String.valueOf(loggedID));
                 params.put("rating", rating);
                 params.put("user_id", String.valueOf(getUser_id));
@@ -234,18 +242,19 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         };
         Volley.newRequestQueue(this).add(request);
     }
+
     private void load() {
         displayLoader2();
-      //  LoadComments();
+        //  LoadComments();
         StringRequest request = new StringRequest(Request.Method.POST, loadURL, response -> {
             //dismiss loader
             pDialog.dismiss();
             try {
                 JSONObject obj = new JSONObject(response);
-                    response_total = obj.getInt("total");
-                    response_average = (float) obj.getDouble("average");
-                    ttlTV.setText(""+response_total);
-                    aveTV.setText(""+response_average);
+                response_total = obj.getInt("total");
+                response_average = (float) obj.getDouble("average");
+                ttlTV.setText("" + response_total);
+                aveTV.setText("" + response_average);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -272,8 +281,9 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
             }
         };
         Volley.newRequestQueue(this).add(request);
-       // LoadComments();
+        // LoadComments();
     }
+
     public void LoadComments() {
         displayLoader3();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, loadComment,
@@ -330,6 +340,7 @@ public class Sample2Activity extends AppCompatActivity implements View.OnClickLi
         };
         Volley.newRequestQueue(this).add(stringRequest);
     }
+
     private void swipe() {
         swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(() -> {

@@ -2,23 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/mll"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="5dp"
     tools:context=".SampleActivity">
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipe">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
-        tools:listitem="@layout/list"
-        android:layout_height="match_parent"
-        android:id="@+id/sample_recycler"
-        />
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sample_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

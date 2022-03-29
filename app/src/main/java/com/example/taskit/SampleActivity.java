@@ -37,9 +37,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class SampleActivity extends AppCompatActivity implements  View.OnClickListener, SampleAdapter.OnItemClickListener {
+public class SampleActivity extends AppCompatActivity implements View.OnClickListener, SampleAdapter.OnItemClickListener {
 
-    private final String selectURL = savedInfo.theUrl+"select.php";
+    private final String selectURL = savedInfo.theUrl + "select.php";
     List<SampleModel> List;
     RecyclerView recyclerView;
     private ProgressDialog pDialog;
@@ -76,6 +76,7 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
         Load();
         swipe();
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -102,7 +103,7 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
                                     ls.getString("fullname"),
                                     ls.getString("email"),
                                     ls.getString("phone"),
-                                //    product.getString("service_string"),
+                                    //    product.getString("service_string"),
                                     ls.getString("location_string"),
                                     ls.getInt("user_id")
                             ));
@@ -140,6 +141,7 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
         };
         Volley.newRequestQueue(this).add(stringRequest);
     }
+
     private void displayLoader() {
         pDialog = new ProgressDialog(SampleActivity.this, R.style.MyAlertDialogStyle);
         pDialog.setMessage("Loading please wait...");
@@ -147,7 +149,8 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
         pDialog.setCancelable(false);
         pDialog.show();
     }
-    public void swipe(){
+
+    public void swipe() {
         swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             finish();
@@ -159,17 +162,18 @@ public class SampleActivity extends AppCompatActivity implements  View.OnClickLi
     @Override
     public void onClick(View v) {
     }
+
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this,Sample2Activity.class);
+        Intent intent = new Intent(this, Sample2Activity.class);
         SampleModel clickedItem = List.get(position);
 
-        intent.putExtra("getFullname",clickedItem.getFullname());
-        intent.putExtra("getPhone",clickedItem.getPhone());
-        intent.putExtra("getLocation_string",clickedItem.getLocation_string());
-        intent.putExtra("getUser_id",clickedItem.getUser_id());
+        intent.putExtra("getFullname", clickedItem.getFullname());
+        intent.putExtra("getPhone", clickedItem.getPhone());
+        intent.putExtra("getLocation_string", clickedItem.getLocation_string());
+        intent.putExtra("getUser_id", clickedItem.getUser_id());
 
         startActivity(intent);
-       // Toast.makeText(this, "yoh", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "yoh", Toast.LENGTH_SHORT).show();
     }
 }
