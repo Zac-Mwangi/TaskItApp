@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/drawable-v24/ic_username.xml" value="0.26614583333333336" />
+        <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_msg.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_sample.xml" value="0.4" />
+        <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_sample2.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/comment_list.xml" value="0.25" />
         <entry key="..\:/xampp/htdocs/TaskItApp/app/src/main/res/layout/list.xml" value="0.264" />
